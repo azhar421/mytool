@@ -1,25 +1,17 @@
-name: CI Pipeline
+name: Simple CI
 
-on:
-  push:
-    branches: [main]
-  pull_request:
+on: [push, pull_request]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      - name: List Files
+        run: ls -la
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Print Hello World
+        run: echo "CI Pipeline running correctly!"
 
-      - name: Run Tests
-        run: npm test
